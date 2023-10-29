@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 // get one product
 router.get('/:id', async (req, res) => {
 
-  const productData = await Product.findByPk(res.params.id);
+  const productData = await Product.findByPk(req.params.id);
 
   return res.json(productData);
   // find a single product by its `id`

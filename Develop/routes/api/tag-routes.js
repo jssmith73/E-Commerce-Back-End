@@ -10,9 +10,7 @@ router.get('/', async (req, res) => {
     ],
   });
 
-return req.json(tagData);
-  // find all tags
-  // be sure to include its associated Product data
+return res.json(tagData);
 });
 
 router.get('/:id', async (req, res) => {
