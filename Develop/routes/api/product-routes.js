@@ -4,19 +4,62 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // The `/api/products` endpoint
 
 // get all products
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+
+  const productData = await Product.findAll();
+
+  return res.json(productData);
   // find all products
   // be sure to include its associated Category and Tag data
 });
 
 // get one product
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
+
+  const productData = await Product.findByPk(res.params.id);
+
+  return res.json(productData);
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
 });
 
 // create new product
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+
+  const productData = await Product.create(
+    {
+      product_name: 'Styled T-Shirt',
+      price: 24.99,
+      stock: 8,
+      category_id: 1,
+    },
+    {
+      product_name: 'Loafers',
+      price: 60.0,
+      stock: 48,
+      category_id: 5,
+    },
+    {
+      product_name: 'Branded Basketball Hat',
+      price: 22.99,
+      stock: 42,
+      category_id: 4,
+    },
+    {
+      product_name: 'Greatet Hits of the 80s',
+      price: 17.99,
+      stock: 47,
+      category_id: 3,
+    },
+    {
+      product_name: 'Swim Shorts',
+      price: 29.99,
+      stock: 26,
+      category_id: 2,
+    }
+  );
+
+  return res.json(productData);
   /* req.body should look like this...
     {
       product_name: "Basketball",
