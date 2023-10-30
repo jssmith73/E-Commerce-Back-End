@@ -49,9 +49,6 @@ router.delete('/:id', async (req, res) => {
 
   const categoryData = await Category.destroy(
     {
-      category_name: req.body.category_name
-    },
-    {
       where: {
         id: req.params.id,
       },

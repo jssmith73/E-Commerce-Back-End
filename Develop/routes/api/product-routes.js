@@ -26,40 +26,6 @@ router.get('/:id', async (req, res) => {
 // create new product
 router.post('/', async (req, res) => {
 
-  const productData = await Product.create(
-    {
-      product_name: 'Styled T-Shirt',
-      price: 24.99,
-      stock: 8,
-      category_id: 1,
-    },
-    {
-      product_name: 'Loafers',
-      price: 60.0,
-      stock: 48,
-      category_id: 5,
-    },
-    {
-      product_name: 'Branded Basketball Hat',
-      price: 22.99,
-      stock: 42,
-      category_id: 4,
-    },
-    {
-      product_name: 'Greatet Hits of the 80s',
-      price: 17.99,
-      stock: 47,
-      category_id: 3,
-    },
-    {
-      product_name: 'Swim Shorts',
-      price: 29.99,
-      stock: 26,
-      category_id: 2,
-    }
-  );
-
-  return res.json(productData);
   /* req.body should look like this...
     {
       product_name: "Basketball",
@@ -71,7 +37,7 @@ router.post('/', async (req, res) => {
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-      if (req.body.tagIds.length) {
+      if (req.body.tagIds) {
         const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
             product_id: product.id,
@@ -135,7 +101,13 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
+
+  const productData = await Product.destroy(
+    {where: {id: req.params.id}}
+  );
+
+  return res.json(productData);
   // delete one product by its `id` value
 });
 
