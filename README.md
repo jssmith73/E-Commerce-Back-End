@@ -21,7 +21,7 @@
 
 ## Usage:
 
-https://drive.google.com/file/d/1g41XLFYHyAMlV-vd6KeHSHeLW2WwlVH_/view
+https://drive.google.com/file/d/1jOKxlDhkmrc6WSfGS2Tnzou0PVo2FkeK/view
 
     In the command line, go into the "Develop" folder and run "npm start" to activate the server. In Insomnia or the browser, the user may create, update, or delete their cateories, products or tags as well as select them to view together or by their given id. 
 
